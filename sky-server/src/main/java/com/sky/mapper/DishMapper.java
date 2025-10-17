@@ -55,4 +55,26 @@ public interface DishMapper {
      * @param ids
      */
     void deleteByIds(List<Long> ids);
+
+    /**
+     * 根据id查询菜品和分类名称
+     * @param id
+     * @return
+     */
+    DishVO getByIdWithCategoryName(Long id);
+
+    /**
+     * 修改菜品数据
+     * @param dish
+     */
+    @AutoFill(value = OperationType.UPDATE)
+    void update(Dish dish);
+
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    @Select("select * from dish where category_id = #{categoryId}")
+    List<Dish> list(Long categoryId);
 }
