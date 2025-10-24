@@ -7,8 +7,18 @@ sky:
     username: root
     password: yaoheyiyhy
 
-  alioss:
-    bucket-name: yhy-com
-    endpoint: oss-cn-beijing.aliyuncs.com
-    access-key-secret:
-    access-key-id:
+#  alioss:
+#    bucket-name: yhy-com
+#    endpoint: oss-cn-beijing.aliyuncs.com
+#    access-key-secret: LTAI5t6gg5cGvqDALivRBWer
+#    access-key-id: LTAI5t6gg5cGvqDALivRBWer
+#
+#  redis:
+#    host: localhost
+#    port: 6379
+#    password: yaoheyiyhy
+#    database: 10
+#
+#  wechat:
+#    appid: wxae56fd7d3a75390c
+#    secret: 0322f6df4af9b0bd6ad359010f69f23f
