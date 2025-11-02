@@ -11,9 +11,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/admin/dish")
@@ -24,6 +27,9 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
     /**
      * 新增菜品
      * @param dishDTO
@@ -31,6 +37,7 @@ public class DishController {
      */
     @PostMapping
     @ApiOperation("新增菜品")
+    @CacheEvict(cacheNames = "dishCache", key = "#dishDTO.categoryId")
     public Result save(@RequestBody DishDTO dishDTO) {
         log.info("新增菜品: {}", dishDTO);
         dishService.saveWithFlavor(dishDTO);
@@ -57,6 +64,7 @@ public class DishController {
      */
     @ApiOperation("批量删除菜品")
     @DeleteMapping
+    @CacheEvict(cacheNames = "dishCache", allEntries = true)
     public Result delete(@RequestParam List<Long> ids) {
         log.info("批量删除菜品: {}", ids);
         dishService.deleteBatch(ids);
@@ -83,6 +91,7 @@ public class DishController {
      */
     @ApiOperation("修改菜品")
     @PutMapping
+    @CacheEvict(cacheNames = "dishCache", allEntries = true)
     public Result update(@RequestBody DishDTO dishDTO) {
         log.info("修改菜品: {}", dishDTO);
         dishService.update(dishDTO);
@@ -97,6 +106,7 @@ public class DishController {
      */
     @ApiOperation("菜品起售/停售")
     @PostMapping("/status/{status}")
+    @CacheEvict(cacheNames = "dishCache", allEntries = true)
     public Result startOrStop(@PathVariable Integer status, Long id) {
         log.info("修改菜品状态: {}, {}", status, id);
         dishService.startOrStop(status, id);
@@ -112,7 +122,9 @@ public class DishController {
     @GetMapping("/list")
     public Result<List<Dish>> list(Long categoryId) {
         log.info("根据分类id查询菜品: {}", categoryId);
-        List<Dish> list = dishService.list(categoryId);
+        Dish dish = new Dish();
+        dish.setCategoryId(categoryId);
+        List<Dish> list = dishService.list(dish);
         return Result.success(list);
     }
 
