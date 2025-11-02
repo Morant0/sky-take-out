@@ -7,6 +7,7 @@
         insert into user (openid, name, phone, sex, id_number, avatar, create_time)
         values (#{openid}, #{name}, #{phone}, #{sex}, #{idNumber}, #{avatar}, #{createTime})
     </insert>
+<<<<<<< HEAD
 
     <select id="countByDate" resultType="java.lang.Integer">
         select count(1) from user
@@ -21,4 +22,6 @@
     </select>
 
 
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 </mapper>

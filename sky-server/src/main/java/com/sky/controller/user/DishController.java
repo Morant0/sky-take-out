@@ -9,7 +9,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.cache.annotation.CachePut;
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +39,7 @@ public class DishController {
      */
     @GetMapping("/list")
     @ApiOperation("根据分类id查询菜品")
+<<<<<<< HEAD
     @CachePut(cacheNames = "dishCache", key = "#categoryId")
     public Result<List<DishVO>> list(Long categoryId) {
         log.info("查询菜品: {}", categoryId);
@@ -44,6 +48,28 @@ public class DishController {
         dish.setCategoryId(categoryId);
         dish.setStatus(StatusConstant.ENABLE);
         List<DishVO> list = dishService.listWithFlavors(dish);
+=======
+    public Result<List<DishVO>> list(Long categoryId) {
+        log.info("查询菜品: {}", categoryId);
+
+        // 查询Redis中是否存在缓存数据
+        String key = "dish_" + categoryId;
+        List<DishVO> list = (List<DishVO>) redisTemplate.opsForValue().get(key);
+
+        // 缓存存在，直接返回
+        if (list != null && list.size() > 0) {
+            return Result.success(list);
+        }
+
+        // 缓存不存在，查询数据库
+        Dish dish = new Dish();
+        dish.setCategoryId(categoryId);
+        dish.setStatus(StatusConstant.ENABLE);
+        list = dishService.listWithFlavors(dish);
+
+        // 缓存数据
+        redisTemplate.opsForValue().set(key, list);
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 
         return Result.success(list);
     }

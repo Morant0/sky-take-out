@@ -1,5 +1,6 @@
 package com.sky.controller.user;
 
+<<<<<<< HEAD
 import com.sky.dto.ShoppingCartDTO;
 import com.sky.entity.ShoppingCart;
 import com.sky.result.Result;
@@ -11,6 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+=======
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 
 @RestController
 @RequestMapping("/user/shoppingCart")
@@ -18,6 +25,7 @@ import java.util.List;
 @Slf4j
 public class ShoppingCartController {
 
+<<<<<<< HEAD
     @Autowired
     private ShoppingCartService shoppingCartService;
 
@@ -72,5 +80,7 @@ public class ShoppingCartController {
     }
 
 
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 
 }

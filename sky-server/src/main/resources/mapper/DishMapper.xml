@@ -78,6 +78,7 @@
             </if>
         </where>
     </select>
+<<<<<<< HEAD
 
     <select id="countByMap" resultType="java.lang.Integer">
         select count(id) from dish
@@ -90,4 +91,6 @@
             </if>
         </where>
     </select>
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 </mapper>

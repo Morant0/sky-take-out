@@ -77,6 +77,7 @@ public interface DishMapper {
      * @return
      */
     List<Dish> list(Dish dish);
+<<<<<<< HEAD
 
     /**
      * 根据条件统计菜品数量
@@ -84,4 +85,6 @@ public interface DishMapper {
      * @return
      */
     Integer countByMap(Map map);
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 }

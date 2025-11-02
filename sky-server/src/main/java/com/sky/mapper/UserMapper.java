@@ -5,9 +5,12 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.Map;
 
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 @Mapper
 public interface UserMapper {
 
@@ -24,6 +27,7 @@ public interface UserMapper {
      * @param user
      */
     void insert(User user);
+<<<<<<< HEAD
 
     /**
      * 根据日期统计用户数量
@@ -31,4 +35,6 @@ public interface UserMapper {
      * @return
      */
     Integer countByDate(Map map);
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 }

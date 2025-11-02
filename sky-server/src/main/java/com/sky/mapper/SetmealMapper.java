@@ -82,6 +82,7 @@ public interface SetmealMapper {
     "from setmeal_dish sd left join dish d on d.id = sd.dish_id " +
     "where sd.setmeal_id = #{setmealId}")
     List<DishItemVO> getDishItemById(Long id);
+<<<<<<< HEAD
 
     /**
      * 根据条件统计套餐数量
@@ -89,4 +90,6 @@ public interface SetmealMapper {
      * @return
      */
     Integer countByMap(Map map);
+=======
+>>>>>>> 0f072ba3d2d02569e1f4491320f94ea9a1d01214
 }
